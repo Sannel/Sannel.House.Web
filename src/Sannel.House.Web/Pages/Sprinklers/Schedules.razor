@@ -1,0 +1,18 @@
+﻿@page "/Sprinklers/Schedules"
+<h3>Schedules</h3>
+
+<ul>
+	@if (ScheduleList is not null)
+	{
+		<RadzenAccordion>
+			<Items>
+				@foreach (var schedule in ScheduleList)
+				{
+					<RadzenAccordionItem Text="@schedule.Name">
+						@schedule.ScheduleCron
+					</RadzenAccordionItem>
+				}
+			</Items>
+		</RadzenAccordion>
+	}
+</ul>

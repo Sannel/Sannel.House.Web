@@ -1,0 +1,16 @@
+﻿@using Sannel.House.Web;
+<RadzenPanelMenu>
+	<RadzenPanelMenuItem Text="Home" Icon="home" />
+	<AuthorizeView Policy="@AuthPolicies.Sprinklers.ALL">
+		<Authorized>
+			<RadzenPanelMenuItem Text="Sprinklers">
+				<AuthorizeView Policy="@AuthPolicies.Sprinklers.SCHEDULE_READ" Context="SprinklerScheduleRead">
+					<Authorized>
+						<RadzenPanelMenuItem Text="Schedules" Path="/Sprinklers/Schedules">
+						</RadzenPanelMenuItem>
+					</Authorized>
+				</AuthorizeView>
+			</RadzenPanelMenuItem>
+		</Authorized>
+	</AuthorizeView>
+</RadzenPanelMenu>
