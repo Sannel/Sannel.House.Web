@@ -2,11 +2,27 @@
 
 <RadzenLayout>
 	<RadzenHeader>
-		<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
-			<RadzenSidebarToggle Click="@(() => sidebar1Expanded = !sidebar1Expanded)" />
-			<RadzenLabel Text="Header" />
-			<RadzenLink Text="Login" Path="/Authentication/Login" />
-		</RadzenStack>
+		<RadzenRow Gap="1rem">
+			<RadzenColumn Size="1">
+				<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+					<RadzenSidebarToggle Click="@(() => sidebar1Expanded = !sidebar1Expanded)" />
+				</RadzenStack>
+			</RadzenColumn>
+			<RadzenColumn>
+
+			</RadzenColumn>
+			<RadzenColumn class="rz-p-3 rz-text-align-right">
+				<AuthorizeView>
+					<Authorized>
+						@context.User.Identity?.Name
+						<RadzenLink Text="Logout" Path="/Authentication/Logout" />
+					</Authorized>
+					<NotAuthorized>
+						<RadzenLink Text="Login" Path="/Authentication/Login" />
+					</NotAuthorized>
+				</AuthorizeView>
+			</RadzenColumn>
+		</RadzenRow>
 	</RadzenHeader>
 	<RadzenSidebar @bind-Expanded="@sidebar1Expanded">
 		<NavMenu></NavMenu>

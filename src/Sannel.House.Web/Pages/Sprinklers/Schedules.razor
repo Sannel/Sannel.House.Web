@@ -1,18 +1,22 @@
 ﻿@page "/Sprinklers/Schedules"
-<h3>Schedules</h3>
-
-<ul>
-	@if (ScheduleList is not null)
-	{
-		<RadzenAccordion>
-			<Items>
-				@foreach (var schedule in ScheduleList)
-				{
-					<RadzenAccordionItem Text="@schedule.Name">
-						@schedule.ScheduleCron
-					</RadzenAccordionItem>
-				}
-			</Items>
-		</RadzenAccordion>
-	}
-</ul>
+<RadzenText TextStyle="TextStyle.H2">Schedules</RadzenText>
+@if (ScheduleList is not null)
+{
+	<RadzenAccordion>
+		<Items>
+			@foreach (var schedule in ScheduleList)
+			{
+				<RadzenAccordionItem Text="@schedule.Name" class="rz-p-2">
+					<RadzenRow Gap="1rem">
+						<RadzenColumn>
+							<RadzenText>@schedule.ScheduleCron</RadzenText>
+						</RadzenColumn>
+						<RadzenColumn class="rz-p-2 rz-text-align-right">
+							<RadzenSwitch Value="schedule.Enabled" ValueChanged="async (b) => await ToggleScheduleAsync(schedule.Id, b)"></RadzenSwitch>
+						</RadzenColumn>
+					</RadzenRow>
+				</RadzenAccordionItem>
+			}
+		</Items>
+	</RadzenAccordion>
+}

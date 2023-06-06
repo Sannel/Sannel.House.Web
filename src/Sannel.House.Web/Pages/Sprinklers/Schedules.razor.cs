@@ -17,6 +17,11 @@ public partial class Schedules
 
 	protected override async Task OnInitializedAsync()
 	{
+		await GetSchedulesAsync();
+	}
+
+	protected async Task GetSchedulesAsync()
+	{
 		try
 		{
 			ScheduleList = await Client.ScheduleAllAsync();
@@ -24,6 +29,20 @@ public partial class Schedules
 		catch (Exception ex)
 		{
 			Logger.LogError(ex, "Unabe to get data");
+		}
+	}
+
+	protected async Task ToggleScheduleAsync(Guid id, bool value)
+	{
+		try
+		{
+			await Client.SchedulePUT2Async(id, value);
+			await GetSchedulesAsync();
+			StateHasChanged();
+		}
+		catch (Exception ex)
+		{
+			Logger.LogError(ex, "Error updating value");
 		}
 	}
 }
