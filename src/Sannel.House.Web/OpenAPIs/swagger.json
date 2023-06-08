@@ -5,11 +5,84 @@
     "version": "1.0"
   },
   "paths": {
+    "/sprinkler/api/v1/Log/Runs/{from}/{to}": {
+      "get": {
+        "tags": [
+          "Log"
+        ],
+        "operationId": "v1.Log.GetRunsForRange",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneRunDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneRunDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneRunDto"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthoroized"
+          }
+        },
+        "security": [
+          {
+            "AzureAd": [
+              "ZoneReaders"
+            ]
+          }
+        ]
+      }
+    },
     "/sprinkler/api/v1/Schedule": {
       "get": {
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.GetSchedules",
         "responses": {
           "200": {
             "description": "Success",
@@ -59,6 +132,7 @@
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.CreateSchedule",
         "requestBody": {
           "content": {
             "application/json": {
@@ -141,6 +215,7 @@
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.UpdateSchedule",
         "requestBody": {
           "content": {
             "application/json": {
@@ -225,6 +300,7 @@
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.GetSchedule",
         "parameters": [
           {
             "name": "id",
@@ -298,6 +374,7 @@
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.UpdateScheduleStatus",
         "parameters": [
           {
             "name": "scheduleId",
@@ -342,6 +419,7 @@
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.GetTodaysRuns",
         "responses": {
           "200": {
             "description": "Success",
@@ -393,6 +471,7 @@
         "tags": [
           "Schedule"
         ],
+        "operationId": "v1.Schedule.GetRunRange",
         "parameters": [
           {
             "name": "startDate",
@@ -464,6 +543,7 @@
         "tags": [
           "Sprinklers"
         ],
+        "operationId": "v1.Sprinklers.Start",
         "parameters": [
           {
             "name": "zoneId",
@@ -524,6 +604,7 @@
         "tags": [
           "Sprinklers"
         ],
+        "operationId": "v1.Sprinklers.Stop",
         "responses": {
           "200": {
             "description": "Success",
@@ -566,6 +647,7 @@
         "tags": [
           "Sprinklers"
         ],
+        "operationId": "v1.Sprinklers.Status",
         "responses": {
           "200": {
             "description": "Success",
@@ -598,6 +680,175 @@
           {
             "AzureAd": [
               "ZoneReaders"
+            ]
+          }
+        ]
+      }
+    },
+    "/sprinkler/api/v1/Zone": {
+      "get": {
+        "tags": [
+          "Zone"
+        ],
+        "operationId": "v1.Zone.GetAllZoneMetaData",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneInfoDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneInfoDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZoneInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthoroized"
+          }
+        },
+        "security": [
+          {
+            "AzureAd": [
+              "ZoneMetaDataReader"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Zone"
+        ],
+        "operationId": "v1.Zone.UpdateZoneMetaData",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZoneInfoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZoneInfoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZoneInfoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthoroized"
+          }
+        },
+        "security": [
+          {
+            "AzureAd": [
+              "ZoneMetaDataWriter"
+            ]
+          }
+        ]
+      }
+    },
+    "/sprinkler/api/v1/Zone/{id}": {
+      "get": {
+        "tags": [
+          "Zone"
+        ],
+        "operationId": "v1.Zone.GetZoneMetaData",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZoneInfoDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZoneInfoDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZoneInfoDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthoroized"
+          }
+        },
+        "security": [
+          {
+            "AzureAd": [
+              "ZoneMetaDataReader"
             ]
           }
         ]
@@ -747,6 +998,43 @@
             "items": {
               "$ref": "#/components/schemas/StationTime"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ZoneInfoDto": {
+        "type": "object",
+        "properties": {
+          "zoneId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ZoneRunDto": {
+        "type": "object",
+        "properties": {
+          "actionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runLength": {
+            "type": "string",
+            "format": "00:00:00",
             "nullable": true
           }
         },

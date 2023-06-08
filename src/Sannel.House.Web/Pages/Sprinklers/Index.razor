@@ -1,0 +1,13 @@
+﻿@page "/Sprinklers"
+<RadzenText TextStyle="TextStyle.Subtitle2">Zones</RadzenText>
+
+<RadzenDataList WrapItems="true" AllowPaging="false" Data=@Zones TItem="Sannel.House.Clients.ZoneInfoDto">
+	<Template Context="info">
+		<RadzenCard Style="width:300px;">
+			<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+				<RadzenText>Index: </RadzenText><RadzenText>@(info.ZoneId + 1)</RadzenText><br />
+				<RadzenText>Name: </RadzenText><RadzenText>@info.Name</RadzenText><br />
+			</RadzenStack>
+		</RadzenCard>
+	</Template>
+</RadzenDataList>

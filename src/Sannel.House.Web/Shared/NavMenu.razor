@@ -3,11 +3,15 @@
 	<RadzenPanelMenuItem Text="Home" Icon="home" />
 	<AuthorizeView Policy="@AuthPolicies.Sprinklers.ALL">
 		<Authorized>
-			<RadzenPanelMenuItem Text="Sprinklers">
+			<RadzenPanelMenuItem Text="Sprinklers" Path="/Sprinklers">
 				<AuthorizeView Policy="@AuthPolicies.Sprinklers.SCHEDULE_READ" Context="SprinklerScheduleRead">
 					<Authorized>
-						<RadzenPanelMenuItem Text="Schedules" Path="/Sprinklers/Schedules">
-						</RadzenPanelMenuItem>
+						<RadzenPanelMenuItem Text="Schedules" Path="/Sprinklers/Schedules" />
+					</Authorized>
+				</AuthorizeView>
+				<AuthorizeView Policy="@AuthPolicies.Sprinklers.ZONE_READ" Context="SprinklerScheduleRead">
+					<Authorized>
+						<RadzenPanelMenuItem Text="Logs" Path="/Sprinklers/Logs" />
 					</Authorized>
 				</AuthorizeView>
 			</RadzenPanelMenuItem>

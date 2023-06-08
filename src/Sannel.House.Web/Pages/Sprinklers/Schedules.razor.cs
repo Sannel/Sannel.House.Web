@@ -24,7 +24,7 @@ public partial class Schedules
 	{
 		try
 		{
-			ScheduleList = await Client.ScheduleAllAsync();
+			ScheduleList = await Client.V1_Schedule_GetSchedulesAsync();
 		}
 		catch (Exception ex)
 		{
@@ -36,7 +36,7 @@ public partial class Schedules
 	{
 		try
 		{
-			await Client.SchedulePUT2Async(id, value);
+			await Client.V1_Schedule_UpdateScheduleStatusAsync(id, value);
 			await GetSchedulesAsync();
 			StateHasChanged();
 		}

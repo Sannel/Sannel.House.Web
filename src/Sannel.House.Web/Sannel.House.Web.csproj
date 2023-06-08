@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="Sannel.House.Clients" ClassName="SprinklersClient">
-      <SourceUri>https://localhost:5000/sprinkler/swagger/v1/swagger.json</SourceUri>
+      <SourceUri>https://localhost:5003/sprinkler/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
   </ItemGroup>
 

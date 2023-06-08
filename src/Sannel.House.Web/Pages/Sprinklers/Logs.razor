@@ -1,0 +1,17 @@
+﻿@page "/Sprinklers/Logs"
+<RadzenText TextStyle="TextStyle.H2">Runs</RadzenText>
+
+<RadzenScheduler @ref=@scheduler TItem="AppointmentData"
+	Data="@Runs"
+	TextProperty="Text"
+	StartProperty="Start"
+	EndProperty="End"
+	Style="height: 800px"
+	>
+	<RadzenDayView @ref=@DayView 
+		StartTime="@StartTime"
+		EndTime="@EndTime"
+		MinutesPerSlot="5" />
+	<RadzenWeekView StartTime="@StartTime" EndTime="@EndTime" />
+	<RadzenMonthView />
+</RadzenScheduler>

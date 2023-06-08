@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Radzen;
 using Sannel.House;
 using Sannel.House.Web;
 
@@ -25,6 +26,11 @@ builder.Services.AddScoped<ApiAuthorizationMessageHandler>();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("WebApi")
 	.AddHttpMessageHandler<ApiAuthorizationMessageHandler>();
+
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<ContextMenuService>();
 
 builder.Services.AddScoped(sp =>
 {
@@ -61,6 +67,19 @@ builder.Services.AddAuthorizationCore(o =>
 	);
 	o.AddPolicy(AuthPolicies.Sprinklers.SCHEDULE_WRITE, p =>
 		p.RequireRole(Roles.Sprinklers.SCHEDULE_WRITE,
+			Roles.Sprinklers.SCHEDULE_WRITE,
+			Roles.ADMIN
+		)
+	);
+	o.AddPolicy(AuthPolicies.Sprinklers.ZONE_READ, p =>
+		p.RequireRole(Roles.Sprinklers.ZONE_READ,
+			Roles.Sprinklers.ZONE_WRITE,
+			Roles.ADMIN
+		)
+	);
+	o.AddPolicy(AuthPolicies.Sprinklers.ZONE_WRITE, p =>
+		p.RequireRole(
+			Roles.Sprinklers.ZONE_WRITE,
 			Roles.ADMIN
 		)
 	);
