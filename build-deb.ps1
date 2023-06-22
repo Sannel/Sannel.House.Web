@@ -32,7 +32,9 @@ $debianDir = $path
 $path = Join-Path -Path $path -ChildPath "control"
 Set-Content -Path $path -Value $content
 
-$content = "/var/lib/Sannel/House/Web/appsettings.json"
+$content = "/var/lib/Sannel/House/Web/wwwroot/appsettings.json
+/var/lib/Sannel/House/Web/wwwroot/appsettings.json.br
+/var/lib/Sannel/House/Web/wwwroot/appsettings.json.gz"
 $path = Join-Path -Path $debianDir -ChildPath "conffiles"
 Set-Content -Path $path -Value $content
 
