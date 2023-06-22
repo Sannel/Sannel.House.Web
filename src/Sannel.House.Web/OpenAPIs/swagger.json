@@ -137,17 +137,29 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewScheduleRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/NewScheduleRequest"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewScheduleRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/NewScheduleRequest"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/NewScheduleRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/NewScheduleRequest"
+                  }
+                ]
               }
             }
           }
@@ -220,17 +232,29 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateScheduleRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateScheduleRequest"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateScheduleRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateScheduleRequest"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateScheduleRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateScheduleRequest"
+                  }
+                ]
               }
             }
           }
@@ -654,17 +678,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Status"
+                  "$ref": "#/components/schemas/StatusDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Status"
+                  "$ref": "#/components/schemas/StatusDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Status"
+                  "$ref": "#/components/schemas/StatusDto"
                 }
               }
             }
@@ -745,17 +769,29 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ZoneInfoDto"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ZoneInfoDto"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ZoneInfoDto"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ZoneInfoDto"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ZoneInfoDto"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ZoneInfoDto"
+                  }
+                ]
               }
             }
           }
@@ -951,24 +987,33 @@
         },
         "additionalProperties": false
       },
-      "Status": {
+      "StatusDto": {
         "type": "object",
         "properties": {
           "isRunning": {
             "type": "boolean"
           },
-          "runningZone": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "timeLeft": {
             "type": "string",
-            "format": "00:00:00"
+            "format": "00:00:00",
+            "nullable": true
+          },
+          "totalTime": {
+            "type": "string",
+            "format": "00:00:00",
+            "nullable": true
           },
           "zones": {
             "type": "integer",
             "format": "int32"
+          },
+          "zoneInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ZoneInfoDto"
+              }
+            ],
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1072,8 +1117,8 @@
         "type": "oauth2",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://login.microsoftonline.com/69686fae-43f6-441b-b05a-0a22f5699c85/oauth2/v2.0/authorize",
-            "tokenUrl": "https://login.microsoftonline.com/69686fae-43f6-441b-b05a-0a22f5699c85/oauth2/v2.0/token",
+            "authorizationUrl": "https://login.microsoftonline.com/.../oauth2/v2.0/authorize",
+            "tokenUrl": "https://login.microsoftonline.com/.../oauth2/v2.0/token",
             "scopes": {
               "api://sannel.house/access": "access"
             }

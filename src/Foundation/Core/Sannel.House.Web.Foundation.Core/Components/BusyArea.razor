@@ -1,0 +1,8 @@
+﻿@if(ViewModel.IsBusy)
+{
+	<RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+}
+else
+{
+	@ChildContent
+}

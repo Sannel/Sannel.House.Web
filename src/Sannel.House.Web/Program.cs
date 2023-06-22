@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Radzen;
 using Sannel.House;
 using Sannel.House.Web;
+using Sannel.House.Web.ViewModels.Sprinklers;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -31,6 +32,7 @@ builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
+builder.Services.AddScoped<IndexViewModel>();
 
 builder.Services.AddScoped(sp =>
 {
