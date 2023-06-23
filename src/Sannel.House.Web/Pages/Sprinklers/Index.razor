@@ -5,7 +5,7 @@
 	<RadzenDataList WrapItems="true" AllowPaging="false" Data=@ViewModel.Zones TItem="Sannel.House.Clients.ZoneInfoDto">
 		<Template Context="info">
 			<RadzenCard Style="@($"width:300px;background-color: {info.Color};")">
-				<RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Start">
+				<RadzenStack Orientation="Orientation.Vertical">
 					<RadzenStack Orientation="Orientation.Horizontal">
 						<RadzenText>Index: </RadzenText><RadzenText>@(info.ZoneId + 1)</RadzenText>
 					</RadzenStack>
@@ -13,6 +13,14 @@
 						<RadzenText>Name: </RadzenText><RadzenText>@info.Name</RadzenText>
 					</RadzenStack>
 				</RadzenStack>
+				<RadzenRow class="rz-mt-2">
+					<RadzenColumn Size="6">
+						<RadzenButton Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Light"><RadzenIcon Icon="play_arrow" IconStyle="IconStyle.Light" /></RadzenButton>
+					</RadzenColumn>
+					<RadzenColumn Size="6" class="rz-text-align-right">
+						<RadzenButton Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Light"><RadzenIcon Icon="build" IconStyle="IconStyle.Light" /></RadzenButton>
+					</RadzenColumn>
+				</RadzenRow>
 			</RadzenCard>
 		</Template>
 	</RadzenDataList>
