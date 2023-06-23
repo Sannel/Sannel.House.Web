@@ -2,7 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Radzen;
 using Radzen.Blazor;
+using Radzen.Blazor.Rendering;
 using Sannel.House.Clients;
 
 namespace Sannel.House.Web.Pages.Sprinklers;
@@ -73,11 +75,19 @@ public partial class Logs
 
 		var d = new AppointmentData()
 		{
-			Text = $@"{zoneRun.StationId + 1} Run ({zoneRun.ActionDate})[{zoneRun.RunLength}]",
+			Text = $@"{zoneRun.StationName} ({zoneRun.ActionDate})[{zoneRun.RunLength}]",
 			Data = zoneRun,
 			Start = start,
 			End = end
 		};
+		
 		Runs.Add(d);
+	}
+	private void OnAppointmentRender(SchedulerAppointmentRenderEventArgs<AppointmentData> args)
+	{
+		if(args?.Data?.Data is ZoneRunDto dto)
+		{
+			args.Attributes["style"] = $"background-color: {dto.StationColor};";
+		}
 	}
 }
