@@ -18,6 +18,9 @@ New-Item -ItemType Directory -Path $path
 
 dotnet publish -c Release --sc -o $path src/Sannel.House.Web/Sannel.House.Web.csproj
 
+Remove-Item -Force ([System.IO.Path]::Combine($path, "wwwroot", "appsettings.json.br"))
+Remove-Item -Force ([System.IO.Path]::Combine($path, "wwwroot", "appsettings.json.gz"))
+
 $content = "Package: sannel.house.web
 Version: $version-$buildNumber
 Maintainer: Adam Holt <holtsoftware@outlook.com>
@@ -32,9 +35,7 @@ $debianDir = $path
 $path = Join-Path -Path $path -ChildPath "control"
 Set-Content -Path $path -Value $content
 
-$content = "/var/lib/Sannel/House/Web/wwwroot/appsettings.json
-/var/lib/Sannel/House/Web/wwwroot/appsettings.json.br
-/var/lib/Sannel/House/Web/wwwroot/appsettings.json.gz"
+$content = "/var/lib/Sannel/House/Web/wwwroot/appsettings.json"
 $path = Join-Path -Path $debianDir -ChildPath "conffiles"
 Set-Content -Path $path -Value $content
 
