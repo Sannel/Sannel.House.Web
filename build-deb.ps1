@@ -16,10 +16,7 @@ New-Item -ItemType Directory -Path $path
 $path = [System.IO.Path]::Combine($rootPath,"var","lib","Sannel","House","Web")
 New-Item -ItemType Directory -Path $path
 
-dotnet publish -c Release --sc -o $path src/Sannel.House.Web/Sannel.House.Web.csproj
-
-Remove-Item -Force ([System.IO.Path]::Combine($path, "wwwroot", "appsettings.json.br"))
-Remove-Item -Force ([System.IO.Path]::Combine($path, "wwwroot", "appsettings.json.gz"))
+dotnet publish -c Release --sc -o $path -p:BlazorEnableCompression=false src/Sannel.House.Web/Sannel.House.Web.csproj
 
 $content = "Package: sannel.house.web
 Version: $version-$buildNumber
