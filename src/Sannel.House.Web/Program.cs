@@ -27,21 +27,18 @@ builder.Services.AddScoped<ApiAuthorizationMessageHandler>();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("WebApi")
 	.AddHttpMessageHandler<ApiAuthorizationMessageHandler>();
+builder.Services.AddHttpClient<Sannel.House.Sprinklers.Shared.SprinklersClient>()
+	.ConfigureHttpClient(client =>
+	{
+		client.BaseAddress = new Uri(builder.Configuration["ClientUrls:Sprinklers"]!);
+	})
+	.AddHttpMessageHandler<ApiAuthorizationMessageHandler>();
 
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
 builder.Services.AddScoped<IndexViewModel>();
-
-builder.Services.AddScoped(sp =>
-{
-	var config = sp.GetRequiredService<IConfiguration>();
-	var factory = sp.GetRequiredService<IHttpClientFactory>();
-	var client = new Sannel.House.Clients.SprinklersClient(config["ClientUrls:Sprinklers"], factory.CreateClient("WebApi"));
-
-	return client;
-});
 
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, CustomUserAccount>(options =>
 {

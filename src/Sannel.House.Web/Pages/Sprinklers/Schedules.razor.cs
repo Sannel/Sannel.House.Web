@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
-using Sannel.House.Clients;
+using Sannel.House.Sprinklers.Shared;
 
 namespace Sannel.House.Web.Pages.Sprinklers;
 
@@ -13,7 +13,7 @@ public partial class Schedules
 	[Inject]
 	public required ILogger<Schedules> Logger { get; set; }
 
-	protected ICollection<ScheduleProgramResponse>? ScheduleList { get; set; }
+//	protected ICollection<ScheduleProgramResponse>? ScheduleList { get; set; }
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -24,7 +24,7 @@ public partial class Schedules
 	{
 		try
 		{
-			ScheduleList = await Client.V1_Schedule_GetSchedulesAsync();
+//			ScheduleList = await Client.V1_Schedule_GetSchedulesAsync();
 		}
 		catch (Exception ex)
 		{
@@ -36,7 +36,7 @@ public partial class Schedules
 	{
 		try
 		{
-			await Client.V1_Schedule_UpdateScheduleStatusAsync(id, value);
+//			await Client.V1_Schedule_UpdateScheduleStatusAsync(id, value);
 			await GetSchedulesAsync();
 			StateHasChanged();
 		}

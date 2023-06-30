@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Radzen;
 using Radzen.Blazor;
 using Radzen.Blazor.Rendering;
-using Sannel.House.Clients;
+using Sannel.House.Sprinklers.Shared;
 
 namespace Sannel.House.Web.Pages.Sprinklers;
 
@@ -48,13 +48,13 @@ public partial class Logs
 
 	protected async Task LoadRangeAsync(DateTimeOffset start, DateTimeOffset end)
 	{
-		var runs = await Client.V1_Log_GetRunsForRangeAsync(start, end);
+		/*var runs = await Client.V1_Log_GetRunsForRangeAsync(start, end);
 		foreach (var r in runs)
 		{
 			AddZoneRun(r);
 		}
 
-		CalculateTimeRange();
+		CalculateTimeRange();*/
 		await scheduler.Reload();
 	}
 
@@ -68,7 +68,7 @@ public partial class Logs
 		EndTime = max.ToTimeSpan();
 	}
 
-	protected void AddZoneRun(ZoneRunDto zoneRun)
+	/*protected void AddZoneRun(ZoneRunDto zoneRun)
 	{
 		var start = zoneRun.ActionDate.AddSeconds(30).LocalDateTime;
 		var end = zoneRun.ActionDate.Add(ToAdd(zoneRun.RunLength)).AddSeconds(-30).LocalDateTime;
@@ -82,12 +82,12 @@ public partial class Logs
 		};
 		
 		Runs.Add(d);
-	}
+	}*/
 	private void OnAppointmentRender(SchedulerAppointmentRenderEventArgs<AppointmentData> args)
 	{
-		if(args?.Data?.Data is ZoneRunDto dto)
+		/*if(args?.Data?.Data is ZoneRunDto dto)
 		{
 			args.Attributes["style"] = $"background-color: {dto.StationColor};";
-		}
+		}*/
 	}
 }

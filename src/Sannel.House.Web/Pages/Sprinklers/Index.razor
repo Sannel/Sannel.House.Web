@@ -1,8 +1,12 @@
 ﻿@page "/Sprinklers"
 <RadzenText TextStyle="TextStyle.Subtitle2">Zones</RadzenText>
 
+@if (ViewModel.IsSaving)
+{
+	<RadzenProgressBar Value="100" Mode="ProgressBarMode.Indeterminate" />
+}
 <BusyArea ViewModel="ViewModel">
-	<RadzenDataList WrapItems="true" AllowPaging="false" Data=@ViewModel.Zones TItem="Sannel.House.Clients.ZoneInfoDto">
+	<RadzenDataList WrapItems="true" AllowPaging="false" Data=@ViewModel.Zones TItem="Sannel.House.Sprinklers.Shared.Dtos.Zones.ZoneInfoDto">
 		<Template Context="info">
 			<RadzenCard Style="@($"width:300px;background-color: {info.Color};")">
 				<RadzenStack Orientation="Orientation.Vertical">
@@ -18,7 +22,11 @@
 						<RadzenButton Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Light"><RadzenIcon Icon="play_arrow" IconStyle="IconStyle.Light" /></RadzenButton>
 					</RadzenColumn>
 					<RadzenColumn Size="6" class="rz-text-align-right">
-						<RadzenButton Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Light"><RadzenIcon Icon="build" IconStyle="IconStyle.Light" /></RadzenButton>
+						<AuthorizeView Policy="@AuthPolicies.Sprinklers.ZONE_WRITE">
+							<Authorized>
+								<RadzenButton Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Light" Click="() => ViewModel.OpenEditZone(info.ZoneId)"><RadzenIcon Icon="build" IconStyle="IconStyle.Light" /></RadzenButton>
+							</Authorized>
+						</AuthorizeView>
 					</RadzenColumn>
 				</RadzenRow>
 			</RadzenCard>

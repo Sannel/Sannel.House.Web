@@ -7,10 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.7" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.7" />
-		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.7">
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.8" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.8" />
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -20,17 +20,13 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Radzen.Blazor" Version="4.13.3" />
+		<PackageReference Include="Radzen.Blazor" Version="4.13.4" />
 		<PackageReference Include="Sannel.House.Core" Version="0.1.2-preview-001" />
+		<PackageReference Include="Sannel.House.Sprinklers.Shared" Version="0.3.5-preview-2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="Sannel.House.Clients" ClassName="SprinklersClient">
-			<SourceUri>https://localhost:5003/sprinkler/swagger/v1/swagger.json</SourceUri>
-		</OpenApiReference>
-	</ItemGroup>
-
-	<ItemGroup>
+	  <ProjectReference Include="..\Feature\Sprinklers\Sannel.House.Web.Feature.Sprinklers\Sannel.House.Web.Feature.Sprinklers.csproj" />
 	  <ProjectReference Include="..\Foundation\Core\Sannel.House.Web.Foundation.Core\Sannel.House.Web.Foundation.Core.csproj" />
 	</ItemGroup>
 

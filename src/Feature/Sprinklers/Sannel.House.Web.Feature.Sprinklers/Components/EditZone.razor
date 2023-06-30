@@ -1,0 +1,20 @@
+﻿<RadzenRow Gap="1rem">
+	<RadzenColumn Size="12">
+		<RadzenStack>
+			<RadzenFormField Text="Name" Variant="Variant.Flat">
+				<RadzenTextBox @bind-Value="@ZoneInfo.Name" />
+			</RadzenFormField>
+			<RadzenFormField Text="Color" Variant="Variant.Flat">
+				<RadzenColorPicker @bind-Value="@ZoneInfo.Color" />
+			</RadzenFormField>
+		</RadzenStack>
+	</RadzenColumn>
+</RadzenRow>
+<RadzenRow Gap="1rem">
+		<RadzenStack>
+			<RadzenButton Variant="Variant.Outlined" Click="Save">Update</RadzenButton>
+		</RadzenStack>
+		<RadzenStack>
+			<RadzenButton Variant="Variant.Outlined" ButtonStyle="ButtonStyle.Secondary" Click="Close">Cancel</RadzenButton>
+		</RadzenStack>
+</RadzenRow>

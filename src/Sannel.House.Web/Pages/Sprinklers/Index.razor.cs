@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Sannel.House.Clients;
 using Sannel.House.Web.ViewModels.Sprinklers;
 
 namespace Sannel.House.Web.Pages.Sprinklers;
