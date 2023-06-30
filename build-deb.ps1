@@ -16,7 +16,7 @@ New-Item -ItemType Directory -Path $path
 $path = [System.IO.Path]::Combine($rootPath,"var","lib","Sannel","House","Web")
 New-Item -ItemType Directory -Path $path
 
-dotnet publish -c Release --sc -o $path src/Sannel.House.Web/Sannel.House.Web.csproj
+dotnet publish -c Release --sc -o $path -p:BlazorEnableCompression=false src/Sannel.House.Web/Sannel.House.Web.csproj
 
 $content = "Package: sannel.house.web
 Version: $version-$buildNumber
@@ -32,9 +32,7 @@ $debianDir = $path
 $path = Join-Path -Path $path -ChildPath "control"
 Set-Content -Path $path -Value $content
 
-$content = "/var/lib/Sannel/House/Web/wwwroot/appsettings.json
-/var/lib/Sannel/House/Web/wwwroot/appsettings.json.br
-/var/lib/Sannel/House/Web/wwwroot/appsettings.json.gz"
+$content = "/var/lib/Sannel/House/Web/wwwroot/appsettings.json"
 $path = Join-Path -Path $debianDir -ChildPath "conffiles"
 Set-Content -Path $path -Value $content
 
